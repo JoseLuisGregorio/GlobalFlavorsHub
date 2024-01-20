@@ -7,9 +7,9 @@ import retrofit2.http.GET
 
 interface GlobalFlavorsHubApiClient {
 
-    @GET("/recipes")
+    @GET("/35f44e12-835d-4c/recipes")
     suspend fun getRecipes(): Response<GlobalFlavorsHubResponse<RecipesDTO>>
 
-    @GET("/recipesDetails")
+    @GET("/35f44e12-835d-4c/recipesDetails")
     suspend fun getRecipesDetails(): Response<GlobalFlavorsHubResponse<RecipesDTO>>
 }
