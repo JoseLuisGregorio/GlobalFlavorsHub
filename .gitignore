@@ -23,8 +23,6 @@
 hs_err_pid*
 replay_pid*
 *.iml
-.gradle
-/local.properties
 /local.*.properties
 .DS_Store
 build/
