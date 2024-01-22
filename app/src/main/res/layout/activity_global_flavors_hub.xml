@@ -10,7 +10,7 @@
         android:id="@+id/loader_animation_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="?attr/scrimBackground"
+        android:background="@color/white"
         android:elevation="2dp"
         android:visibility="invisible"
         android:clickable="true"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/turboUserFragmentContainerView"
+            android:id="@+id/global_flavors_hub_FragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

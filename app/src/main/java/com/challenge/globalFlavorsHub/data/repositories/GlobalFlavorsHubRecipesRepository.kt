@@ -20,7 +20,7 @@ class GlobalFlavorsHubRecipesRepository @Inject constructor(
     fun getRecipesDetails() = globalFlavorsHubResponse(block = api::getRecipesDetails).map { resource ->
         resource.map { response ->
             response?.recipes?.map { recipes ->
-                recipes.toRecipeViewData()
+                recipes
             }
         }
     }

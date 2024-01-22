@@ -27,15 +27,31 @@
 
         <argument
             android:name="recipeID"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null"/>
+            app:argType="integer"
+            android:defaultValue="0" />
+
+
     </fragment>
 
     <fragment
         android:id="@+id/recipeLocationMapFragment"
         android:name="com.challenge.globalFlavorsHub.ui.views.map.RecipeLocationMapFragment"
         android:label="fragment_recipe_location_map"
-        tools:layout="@layout/fragment_recipe_location_map" />
+        tools:layout="@layout/fragment_recipe_location_map" >
+        <argument
+            android:name="latitude"
+            app:argType="float"
+            android:defaultValue="0" />
+        <argument
+            android:name="longitude"
+            app:argType="float"
+            android:defaultValue="0" />
+        <argument
+            android:name="country"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+    </fragment>
 
 </navigation>

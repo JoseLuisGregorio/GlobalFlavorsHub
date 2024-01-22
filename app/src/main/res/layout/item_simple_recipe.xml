@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="@dimen/dp_8"
+    android:layout_marginHorizontal="@dimen/dp_8"
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardElevation="@dimen/dp_0"
+    android:backgroundTint="@color/green_container"
     android:id="@+id/item_simple_recipe">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageRecipe"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/nameRecipe"/>
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/nameRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/imageRecipe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nameRecipe"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            style="@style/OfTitleBlackBold20"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageRecipe"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageRecipe"
+            android:layout_width="@dimen/dp_90"
+            android:layout_height="@dimen/dp_90"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameRecipe"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

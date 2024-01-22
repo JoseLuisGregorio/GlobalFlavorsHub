@@ -20,6 +20,9 @@ class GlobalFlavorsHubViewModel @Inject constructor() : ViewModel() {
     private val _isRefreshing = MutableLiveData<Boolean>()
     val isRefreshing = _isRefreshing.asLiveData()
 
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage = _errorMessage.asLiveData()
+
     var refreshRequest: (() -> Unit)? = null
 
     fun finishRefreshRequest() {
@@ -28,5 +31,9 @@ class GlobalFlavorsHubViewModel @Inject constructor() : ViewModel() {
 
     fun isLoading(isLoading: Boolean) {
         if (isLoading != _isLoading.value) _isLoading.value = isLoading
+    }
+
+    fun showErrorMessage(message: String?) {
+        _errorMessage.value = message
     }
 }

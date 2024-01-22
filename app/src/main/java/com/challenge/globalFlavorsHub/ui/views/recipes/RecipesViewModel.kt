@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.challenge.globalFlavorsHub.data.model.NetworkResource
-import com.challenge.globalFlavorsHub.data.model.RecipesViewData
+import com.challenge.globalFlavorsHub.data.model.RecipeViewData
 import com.challenge.globalFlavorsHub.data.repositories.GlobalFlavorsHubRecipesRepository
 import com.challenge.globalFlavorsHub.utils.asNetworkResource
 import com.challenge.globalFlavorsHub.utils.extensions.asLiveData
@@ -20,10 +20,10 @@ class RecipesViewModel @Inject constructor(
     private val globalFlavorsHubRecipesRepository: GlobalFlavorsHubRecipesRepository,
 ) : ViewModel() {
 
-    private val _recipes = MutableLiveData<NetworkResource<List<RecipesViewData>>>()
+    private val _recipes = MutableLiveData<NetworkResource<List<RecipeViewData>>>()
     val recipes = _recipes.asLiveData()
 
-    init {
+    fun getAllRecipes() {
         viewModelScope.launch {
             getRecipes().collect { _recipes.postValue(it) }
         }
