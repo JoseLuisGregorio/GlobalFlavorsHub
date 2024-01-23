@@ -18,21 +18,6 @@ import kotlinx.coroutines.flow.map
 import retrofit2.Response
 
 /**
- * Flow builder that wraps a thread-locking block of code into a [NetworkResource] class.
- * It reports [NetworkResource.Loading] before executing the block.
- *
- */
-fun <T> networkResourceFlow(
-    dispatcher: CoroutineDispatcher = Dispatchers.IO,
-    block: suspend () -> T,
-): Flow<NetworkResource<T>> = flow {
-    emit(Loading())
-    emit(Success(block()))
-}.catch {
-    emit(it.asNetworkResource())
-}.flowOn(dispatcher)
-
-/**
  * Flow builder that wraps the body of a [Response] from an Retrofit Interface into a
  * [NetworkResource] class.
  *
