@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GlobalFlavorsHub</string>
+    <string name="label_ingredients">Ingredientes</string>
+    <string name="label_procedure">Procedimiento</string>
+    <string name="hint_search">Buscar por nombre o por ingredientes</string>
+    <string name="label_show_location">Ver en el mapa</string>
+</resources>
