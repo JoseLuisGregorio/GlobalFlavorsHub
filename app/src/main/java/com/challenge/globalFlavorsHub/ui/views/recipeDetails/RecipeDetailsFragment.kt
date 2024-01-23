@@ -2,6 +2,7 @@ package com.challenge.globalFlavorsHub.ui.views.recipeDetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -56,6 +57,11 @@ class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
     private fun showData() {
         binding.apply {
             recipeDetail?.let { safeRecipeDetail ->
+                materialButtonOpenInMap.isVisible = true
+                materialTextViewIngredients.isVisible = true
+                materialTextViewProcedure.isVisible = true
+                recyclerViewIngredients.isVisible = true
+                recyclerViewProcedure.isVisible = true
                 materialTextViewNameRecipe.text = safeRecipeDetail.dishName
                 shapeableImageViewDishImage.loadImageFromURL(safeRecipeDetail.dishImageUrl)
                 ingredientsAdapter.submitList(safeRecipeDetail.ingredients)

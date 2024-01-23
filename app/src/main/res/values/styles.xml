@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="TextInputLayoutHintText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="imageStyle_corners">
         <item name="cornerSizeTopRight">@dimen/dp_24</item>
         <item name="cornerSizeBottomLeft">@dimen/dp_24</item>

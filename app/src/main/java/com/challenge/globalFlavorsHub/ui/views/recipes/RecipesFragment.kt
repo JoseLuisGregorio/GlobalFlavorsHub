@@ -2,6 +2,8 @@ package com.challenge.globalFlavorsHub.ui.views.recipes
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -26,11 +28,18 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentRecipesBinding.bind(view)
         setUpObservers()
+        onClicksListeners()
         binding.apply {
             recyclerViewRecipes.adapter = recipesAdapter
             recipesViewModel.getAllRecipes()
             globalFlavorsHubViewModel.refreshRequest = recipesViewModel::getAllRecipes
         }
+    }
+
+    private fun onClicksListeners() {
+        binding.textInputEditTextQuerySearch.imeOptions =
+            EditorInfo.IME_ACTION_SEARCH
+        binding.textInputEditTextQuerySearch.doAfterTextChanged(recipesViewModel::search)
     }
 
     private fun setUpObservers() {
