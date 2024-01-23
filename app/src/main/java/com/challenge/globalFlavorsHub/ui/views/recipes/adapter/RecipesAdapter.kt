@@ -2,21 +2,23 @@ package com.challenge.globalFlavorsHub.ui.views.recipes.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.challenge.globalFlavorsHub.data.model.RecipeViewData
 import com.challenge.globalFlavorsHub.databinding.ItemSimpleRecipeBinding
 import com.challenge.globalFlavorsHub.ui.views.recipes.adapter.RecipesAdapter.RecipesViewHolder
-import com.challenge.globalFlavorsHub.utils.extensions.asLiveData
 import com.challenge.globalFlavorsHub.utils.extensions.loadImageFromURL
 
+typealias OnClickSelectRecipe = (RecipeViewData) -> Unit
 class RecipesAdapter :
     ListAdapter<RecipeViewData, RecipesViewHolder>(ListRecipesDiffUtil) {
 
-    private val _onRecipeClick = MutableLiveData<RecipeViewData>()
-    val onRecipeClick = _onRecipeClick.asLiveData()
+    private var onClickSelectRecipe: OnClickSelectRecipe? = null
+
+    fun setOnRecipeClick(onClickRadio: OnClickSelectRecipe) {
+        this.onClickSelectRecipe = onClickRadio
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder = parent
         .context
@@ -29,7 +31,7 @@ class RecipesAdapter :
         with(holder.binding) {
             nameRecipe.text = recipe.dishName
             imageRecipe.loadImageFromURL(recipe.dishImageUrl)
-            itemSimpleRecipe.setOnClickListener { _onRecipeClick.value = recipe }
+            itemSimpleRecipe.setOnClickListener { onClickSelectRecipe?.invoke(recipe) }
         }
     }
 

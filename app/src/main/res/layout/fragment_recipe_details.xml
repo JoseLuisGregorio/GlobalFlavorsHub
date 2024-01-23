@@ -6,9 +6,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.views.recipeDetails.RecipeDetailsFragment">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/nameRecipe"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/materialButton_openInMap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView_nameRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/OfTitleBlackBoldCenter30"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/shapeableImageView_dishImage"/>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shapeableImageView_dishImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/imageStyle_corners"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView_nameRecipe"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/OfTitleBlackSemiBoldCenter18"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                app:layout_constraintTop_toBottomOf="@id/shapeableImageView_dishImage"
+                android:text="@string/label_ingredients"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerView_ingredients"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_ingredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView_ingredients"
+                app:layout_constraintBottom_toTopOf="@+id/materialTextView_instructions"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/OfTitleBlackSemiBoldCenter18"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                app:layout_constraintTop_toBottomOf="@id/recyclerView_ingredients"
+                android:text="@string/label_procedure"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerView_procedure"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_procedure"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView_instructions"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton_openInMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:text="Abrir en el mapa"
+        android:layout_marginHorizontal="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

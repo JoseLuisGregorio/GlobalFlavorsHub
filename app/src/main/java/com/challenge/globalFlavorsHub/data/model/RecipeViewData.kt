@@ -14,7 +14,7 @@ data class RecipeViewData(
     val countryImageUrl: String,
     val shortsIngredients: String,
     val ingredients: List<String>,
-    val instructions: List<String>,
+    val procedure: List<String>,
 ) : Comparable<RecipeViewData>, Parcelable {
     override fun compareTo(other: RecipeViewData): Int =
         dishName.compareTo(other.dishName)

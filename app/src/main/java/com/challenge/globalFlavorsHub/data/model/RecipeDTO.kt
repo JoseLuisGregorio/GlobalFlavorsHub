@@ -15,7 +15,7 @@ data class RecipeDTO(
     @SerializedName("country_image_url") val countryImageUrl: String? = "",
     @SerializedName("shorts_ingredients") val shortsIngredients: String? = "",
     @SerializedName("ingredients") val ingredients: List<String>? = emptyList(),
-    @SerializedName("instructions") val instructions: List<String>? = emptyList(),
+    @SerializedName("procedure") val procedure: List<String>? = emptyList(),
 ) : Parcelable {
     fun toRecipeViewData() =
         RecipeViewData(
@@ -28,6 +28,6 @@ data class RecipeDTO(
             countryImageUrl = countryImageUrl.orEmpty(),
             shortsIngredients = shortsIngredients.orEmpty(),
             ingredients = ingredients ?: emptyList(),
-            instructions = instructions ?: emptyList(),
+            procedure = procedure ?: emptyList(),
         )
 }

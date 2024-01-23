@@ -7,7 +7,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.challenge.globalFlavorsHub.R
-import com.challenge.globalFlavorsHub.data.model.NetworkResource
+import com.challenge.globalFlavorsHub.data.model.NetworkResource.Error
+import com.challenge.globalFlavorsHub.data.model.NetworkResource.Loading
+import com.challenge.globalFlavorsHub.data.model.NetworkResource.Success
 import com.challenge.globalFlavorsHub.databinding.FragmentRecipesBinding
 import com.challenge.globalFlavorsHub.ui.views.main.GlobalFlavorsHubViewModel
 import com.challenge.globalFlavorsHub.ui.views.recipes.adapter.RecipesAdapter
@@ -16,34 +18,40 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipesFragment : Fragment(R.layout.fragment_recipes) {
 
+    private lateinit var binding: FragmentRecipesBinding
     private val globalFlavorsHubViewModel: GlobalFlavorsHubViewModel by activityViewModels()
     private val recipesViewModel: RecipesViewModel by viewModels()
 
     private val recipesAdapter: RecipesAdapter by lazy { RecipesAdapter() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        with(FragmentRecipesBinding.bind(view)) {
+        binding = FragmentRecipesBinding.bind(view)
+        setUpObservers()
+        binding.apply {
             recyclerViewRecipes.adapter = recipesAdapter
             recipesViewModel.getAllRecipes()
             globalFlavorsHubViewModel.refreshRequest = recipesViewModel::getAllRecipes
-            recipesViewModel.recipes.observe(viewLifecycleOwner) { resource ->
-                globalFlavorsHubViewModel.isLoading(resource is NetworkResource.Loading)
-                if (resource !is NetworkResource.Loading) {
-                    globalFlavorsHubViewModel.finishRefreshRequest()
-                }
-                when (resource) {
-                    is NetworkResource.Loading -> Unit
-                    is Error -> globalFlavorsHubViewModel.showErrorMessage(resource.message)
-                    is NetworkResource.Success -> resource.data?.let { recipesList ->
-                        recipesAdapter.submitList(recipesList)
-                    }
+        }
+    }
 
-                    else -> {}
+    private fun setUpObservers() {
+        recipesViewModel.recipes.observe(viewLifecycleOwner) { resource ->
+            globalFlavorsHubViewModel.isLoading(resource is Loading)
+            if (resource !is Loading) {
+                globalFlavorsHubViewModel.finishRefreshRequest()
+            }
+            when (resource) {
+                is Loading -> Unit
+                is Error -> globalFlavorsHubViewModel.showErrorMessage(resource.message)
+                is Success -> resource.data?.let { recipesList ->
+                    recipesAdapter.submitList(recipesList)
                 }
-            }
 
-            recipesAdapter.onRecipeClick.observe(viewLifecycleOwner) {
-                findNavController().navigate(RecipesFragmentDirections.openRecipeDetails(it.id))
+                else -> {}
             }
+        }
+
+        recipesAdapter.setOnRecipeClick {
+            findNavController().navigate(RecipesFragmentDirections.openRecipeDetails(it.id))
         }
     }
 

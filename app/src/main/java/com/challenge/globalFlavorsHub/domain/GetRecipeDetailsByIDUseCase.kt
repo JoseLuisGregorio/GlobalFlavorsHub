@@ -27,7 +27,7 @@ class GetRecipeDetailsByIDUseCase @Inject constructor(
                         countryImageUrl = recipe.countryImageUrl ?: "",
                         shortsIngredients = recipe.shortsIngredients ?: "",
                         ingredients = recipe.ingredients ?: emptyList(),
-                        instructions = recipe.instructions ?: emptyList(),
+                        procedure = recipe.procedure ?: emptyList(),
                     )
                 } ?: RecipeViewData(
                 id = 0,
@@ -39,7 +39,7 @@ class GetRecipeDetailsByIDUseCase @Inject constructor(
                 countryImageUrl = "",
                 shortsIngredients = "",
                 ingredients = emptyList(),
-                instructions = emptyList(),
+                procedure = emptyList(),
             )
         }
     }.flowOn(dispatcher)
